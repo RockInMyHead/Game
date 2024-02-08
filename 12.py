@@ -28,11 +28,11 @@ pygame.display.set_caption('Управление машинкой')
 
 # Загрузка изображений
 bg_img = pygame.image.load('Back.jpg')
-car_img = pygame.image.load('Car.jpg')
+car_img = pygame.image.load('free-icon-car-1365901.png')
 
 # Переменные
 car_x = 28
-car_y = 350
+car_y = 390
 car_speed = 1
 bg_x = 0
 distance = 0
@@ -80,13 +80,15 @@ while running:
     # Управление машинкой с клавиатуры
     keys = pygame.key.get_pressed()
     if timer > 60:
-        car_x += car_speed
-        distance += 0.05
+        car_x += car_speed/2
+        distance += 0.2
+        bg_x -= 3
     if timer < 60:
-        car_x +=  0.05
+        bg_x -= 1
+        car_x -=  0.3
     
     # Проверка на выход за границы экрана
-    if car_x < 0 or car_x > width:
+    if car_x < 0 :
         font = pygame.font.SysFont(None, 55)
         text = font.render("Конец игры", True, (255, 0, 0))
         screen.blit(text, (28, 250))
@@ -94,7 +96,7 @@ while running:
         pygame.time.delay(2000)  # Задержка перед выходом из игры
         running = False
     # Движение фона вправо
-    bg_x -= 1
+
     if bg_x <= -width:
         bg_x = 0
 
@@ -117,4 +119,5 @@ pygame.quit()
 sys.exit()
 
 
+    
     
